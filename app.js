@@ -1,9 +1,10 @@
-const fs = require("node:fs");
+const EventEmitter = require("node:events");
+const emitter = new EventEmitter();
 
-// const files = fs.readdirSync("./aaaaa");
-// console.log(files);
-
-fs.readdir(".", function (err, files) {
-	if (err) console.log("Error: ", err);
-	if (files) console.log("Files: ", files);
+// Register a Listener
+emitter.on("messageLogged", () => {
+	console.log("Listener Called");
 });
+
+// Raise an Event
+emitter.emit("messageLogged");
