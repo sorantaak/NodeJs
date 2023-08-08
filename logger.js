@@ -1,11 +1,12 @@
 // (function (exports, require, module, __filename, __dirname) {
-    console.log(__filename);
-    console.log(__dirname);
-	var url = "http://google.com";
-	function log(message) {
+const EventEmitter = require("node:events");
+class Logger extends EventEmitter {
+	log(message) {
 		console.log(message);
+		this.emit("messageLogged", { id: 1, url: "http://" });
 	}
-	// module.exports.log = log;
-	module.exports = log; // in this line export directly log function
-	// module.exports.endPoinUrl = url;
+}
+// module.exports.log = log;
+module.exports = Logger; // in this line export directly log function
+// module.exports.endPoinUrl = url;
 // });
